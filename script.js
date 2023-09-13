@@ -1,11 +1,15 @@
+import { createMovingObject } from "./createMovingObject.js";
+
 const character = document.getElementById("character");
 const bg = document.getElementById("bg");
-const object = document.getElementById("object");
-
 let facing = "down";
-let objectPositionX = 0;
-let objectPositionY = 0;
-const objectStep = 1.8;
+
+const movingObject = createMovingObject({
+  initialX: 0,
+  initialY: 0,
+  step: 1.8,
+  id: "1",
+});
 
 const keysPressed = {
   87: { isPressed: false, isPrincipal: false, queue: 1 },
@@ -25,31 +29,30 @@ const faceTo = (direction) => {
   character.classList.add(`facing-${facing}`);
 };
 
-const moveObject = () => {
+const moveEverything = () => {
   if (keysPressed[87].isPressed && keysPressed[87].isPrincipal) {
     faceTo("up");
     character.classList.add("run-up");
     bg.classList.add("bg-down");
-    objectPositionY += objectStep;
+    movingObject.moveObject({ isVertical: true, isUp: false });
   } else if (keysPressed[83].isPressed && keysPressed[83].isPrincipal) {
     faceTo("down");
     character.classList.add("run-down");
     bg.classList.add("bg-up");
-    objectPositionY -= objectStep;
+    movingObject.moveObject({ isVertical: true, isUp: true });
   } else if (keysPressed[65].isPressed && keysPressed[65].isPrincipal) {
     faceTo("left");
     character.classList.add("run-left");
     bg.classList.add("bg-right");
-    objectPositionX += objectStep;
+    movingObject.moveObject({ isHorizontal: true, isLeft: false });
   } else if (keysPressed[68].isPressed && keysPressed[68].isPrincipal) {
     faceTo("right");
     character.classList.add("run-right");
     bg.classList.add("bg-left");
-    objectPositionX -= objectStep;
+    movingObject.moveObject({ isHorizontal: true, isLeft: true });
   }
 
-  object.style.transform = `translate(${objectPositionX}px, ${objectPositionY}px)`;
-  requestAnimationFrame(moveObject);
+  requestAnimationFrame(moveEverything);
 };
 
 const resetPrincipal = () => {
@@ -92,10 +95,10 @@ document.addEventListener("keyup", (event) => {
   try {
     keysPressed[getFirstPressedInQueue()].isPrincipal = true;
     queueUp(-1);
-  } catch (e) { }
+  } catch (e) {}
 
   character.classList.remove("run-up", "run-down", "run-left", "run-right");
   bg.classList.remove("bg-down", "bg-up", "bg-left", "bg-right");
 });
 
-moveObject();
+moveEverything();
