@@ -1,0 +1,218 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#bg {
+  image-rendering: pixelated;
+  background: url("https://static.wikia.nocookie.net/minecraft_gamepedia/images/3/36/White_Concrete_Powder_%28texture%29_JE1_BE1.png");
+  background-size: 32px 32px;
+}
+
+#object {
+  width: 100px;
+  height: 100px;
+  background: #000;
+  position: absolute;
+  top: 3px;
+}
+
+#character {
+  width: 96px;
+  height: 96px;
+  background: url("https://www.seekpng.com/png/full/381-3813453_wolves-img-rpg-maker-vx-ace-wolf.png");
+  image-rendering: pixelated;
+  background-size: 1152px 768px;
+  z-index: 1;
+}
+
+#character.facing-down {
+  background-position: -96px 0px;
+}
+
+#character.facing-left {
+  background-position: -96px -96px;
+}
+
+#character.facing-right {
+  background-position: -96px -192px;
+}
+
+#character.facing-up {
+  background-position: -96px -288px;
+}
+
+#character.run-down {
+  animation: run-down 0.3s steps(1) infinite;
+}
+
+#character.run-left {
+  animation: run-left 0.3s steps(1) infinite;
+}
+
+#character.run-right {
+  animation: run-right 0.3s steps(1) infinite;
+}
+
+#character.run-up {
+  animation: run-up 0.3s steps(1) infinite;
+}
+
+.bg-down {
+  animation: bg-down 0.3s steps(16) infinite;
+}
+
+.bg-left {
+  animation: bg-left 0.3s steps(16) infinite;
+}
+
+.bg-right {
+  animation: bg-right 0.3s steps(16) infinite;
+}
+
+.bg-up {
+  animation: bg-up 0.3s steps(16) infinite;
+}
+
+@keyframes run-down {
+  0% {
+    background-position: 0px 0px;
+  }
+
+  25% {
+    background-position: -96px 0px;
+  }
+
+  50% {
+    background-position: -192px 0px;
+  }
+
+  75% {
+    background-position: -96px 0px;
+  }
+
+  100% {
+    background-position: 0px 0px;
+  }
+}
+
+@keyframes run-left {
+  0% {
+    background-position: 0px -96px;
+  }
+
+  25% {
+    background-position: -96px -96px;
+  }
+
+  50% {
+    background-position: -192px -96px;
+  }
+
+  75% {
+    background-position: -96px -96px;
+  }
+
+  100% {
+    background-position: 0px -96px;
+  }
+}
+
+@keyframes run-right {
+  0% {
+    background-position: 0px -192px;
+  }
+
+  25% {
+    background-position: -96px -192px;
+  }
+
+  50% {
+    background-position: -192px -192px;
+  }
+
+  75% {
+    background-position: -96px -192px;
+  }
+
+  100% {
+    background-position: 0px -192px;
+  }
+}
+
+@keyframes run-up {
+  0% {
+    background-position: 0px -288px;
+  }
+
+  25% {
+    background-position: -96px -288px;
+  }
+
+  50% {
+    background-position: -192px -288px;
+  }
+
+  75% {
+    background-position: -96px -288px;
+  }
+
+  100% {
+    background-position: 0px -288px;
+  }
+}
+
+@keyframes bg-down {
+  0% {
+    background-position: 0px 0px;
+  }
+
+  100% {
+    background-position: 0px 32px;
+  }
+}
+
+@keyframes bg-up {
+  0% {
+    background-position: 0px 0px;
+  }
+
+  100% {
+    background-position: 0px -32px;
+  }
+}
+
+@keyframes bg-left {
+  0% {
+    background-position: 0px 0px;
+  }
+
+  100% {
+    background-position: -32px 0px;
+  }
+}
+
+@keyframes bg-right {
+  0% {
+    background-position: 0px 0px;
+  }
+
+  100% {
+    background-position: 32px 0px;
+  }
+}
